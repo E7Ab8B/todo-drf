@@ -1,0 +1,85 @@
+[tool.black]
+line-length = 120
+
+
+[tool.pyright]
+venvPath = "."
+venv = ".venv"
+pythonVersion = "3.10"
+exclude = [".venv", "**/migrations"]
+include = ["app"]
+
+[tool.coverage]
+
+    [tool.coverage.run]
+    source = ["app"]
+
+    [tool.coverage.report]
+    exclude_lines = [
+        # Have to re-enable the standard pragma
+        "pragma: no cover",
+
+        # Don't complain about missing debug-only code:
+        "def __repr__",
+        "if self.debug",
+
+        # Don't complain if tests don't hit defensive assertion code:
+        "raise AssertionError",
+        "raise NotImplementedError",
+
+        # Don't complain if non-runnable code isn't run:
+        "if 0:",
+        "if __name__ == .__main__.:",
+        "if TYPE_CHECKING:",
+
+        # Don't complain about abstract methods, they aren't run:
+        "@(abc.)?abstractmethod"
+    ]
+
+[tool.pylint]
+
+    [tool.pylint.main]
+    # List of plugins (as comma separated values of python module names) to load, usually to register additional checkers.
+    load-plugins = ["pylint_django", "pylint_celery"]
+
+    py-version = "3.10"
+
+    [tool.pylint.basic]
+    bad-names = ["foo", "bar", "baz"]
+
+    # Minimum line length for functions/classes that require docstrings, shorter ones
+    # are exempt.
+    docstring-min-length = 5
+
+    # Good variable names which should always be accepted, separated by a comma.
+    good-names = ["i", "j", "k", "ex", "Run", "_", "qs", "urlpatterns", "register", "app_name", "handler400", "handler403", "handler404", "handler500"]
+
+    [tool.pylint."django foreign keys referenced by strings"]
+    # A module containing Django settings to be used while linting.
+    django-settings-module = "config.settings.local"
+
+    [tool.pylint.format]
+    max-line-length = 120
+
+    [tool.pylint.design]
+    # Maximum number of parents for a class.
+    max-parents=13
+
+    [tool.pylint."messages control"]
+    # Disable the message, report, category or checker with the given id(s).
+    disable = ["missing-docstring", "invalid-name", "too-few-public-methods", "unused-wildcard-import", "fixme"]
+
+    [tool.pylint.method_args]
+    # List of qualified names (i.e., library.method) which require a timeout
+    # parameter e.g. 'requests.api.get,requests.api.post'
+    timeout-methods = ["requests.api.delete", "requests.api.get", "requests.api.head", "requests.api.options", "requests.api.patch", "requests.api.post", "requests.api.put", "requests.api.request"]
+
+    [tool.pylint.miscellaneous]
+    # List of note tags to take in consideration, separated by a comma.
+    notes = ["FIXME", "XXX", "TODO", "BUG", "NOTE"]
+
+    [tool.pylint.typecheck]
+    # List of members which are set dynamically and missed by pylint inference
+    # system, and so shouldn't trigger E1101 when accessed. Python regular
+    # expressions are accepted.
+    generated-members = "REQUEST, acl_users, aq_parent, \"[a-zA-Z]+_set{1,2}\", save, delete"

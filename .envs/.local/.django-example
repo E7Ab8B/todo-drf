@@ -1,0 +1,16 @@
+# General
+# ------------------------------------------------------------------------------
+USE_DOCKER="yes"
+IPYTHONDIR="/app/.ipython"
+
+# RabbitMQ
+# ------------------------------------------------------------------------------
+RABBITMQ_URL="amqp://guest:guest@rabbitmq:5672/"
+
+# Celery
+# ------------------------------------------------------------------------------
+CELERY_BROKER_URL="${RABBITMQ_URL}"
+
+# Flower
+CELERY_FLOWER_USER="CELUYusqOxFUqxdeWgDYQOjsmkCppviT"
+CELERY_FLOWER_PASSWORD="7RPMXeM3Y2nOJcQA6oMPUuFB7T1MtVUHTf2iw9FB3zgR8iOM3fy1kg3oaSgTNV4b"
